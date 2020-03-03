@@ -1,0 +1,46 @@
+
+.form-login{
+    background-color: #f5f5f5;
+    width: 400px;
+    height: 600px;
+    box-shadow:0 3px 5px 0 rgba(0,0,0,.13);
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 4px 15px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 15px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 15px -1px rgba(0,0,0,0.75);
+}
+
+.login-farmhub{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.sign-in-login{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.email-username-password{
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.input-login{
+    margin-bottom: 10px;
+    width: 100%;
+    height: 35px;
+    border-radius: 7px;
+    
+}
+
+.new-account-google{
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.btn-login{
+    border-bottom:lightgrey 1px solid;
+    height: 10px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}

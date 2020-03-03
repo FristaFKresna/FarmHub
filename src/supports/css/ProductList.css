@@ -1,0 +1,27 @@
+.my-card{
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    padding: 0px !important;
+    border-radius:7px;
+}
+
+.farmhub-product-title{
+    font-size: 14px;
+    font-weight: 800;
+    padding: 0px 10px;
+}
+
+.farmhub-product-price{
+    font-size: 14px;
+    font-weight: 800;
+    padding: 0px 10px;
+    color: #fa591d;
+}
+
+.farmhub-product-location{
+    font-size: 14px;
+    font-weight: 800;
+    padding: 0px 10px;
+    color: rgba(49, 53, 59, 0.68);
+}

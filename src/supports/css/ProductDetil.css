@@ -1,0 +1,50 @@
+.poto-produk{
+    border:1px solid black;
+    border-radius:10px
+}
+
+.farmhub-product-detil-title{
+    font-size: 35px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.farmhub-product-detil-price{
+    font-size: 25px;
+    color:red;
+    margin-bottom: 10px;
+
+}
+
+.farmhub-product-detil-location{
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.farmhub-product-detil-stok{
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.farmhub-product-detil-info{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.keranjang{
+    border:1px solid lightgrey;
+    background-color: white;
+    height: 100px;
+    align-items: center;
+
+}
+
+.total{
+    font-size: 20px;
+    
+}
+
+.harga{
+    font-size: 25px;
+    font-weight: 500;
+}
