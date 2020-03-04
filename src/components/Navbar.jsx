@@ -6,7 +6,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
@@ -31,7 +30,7 @@ class FarmHubNavbar extends React.Component{
                         <Nav className="mr-auto" navbar>
                             <NavItem>
                                 <Link to='/product'>
-                                    <NavLink>Products</NavLink>
+                                    Products
                                 </Link>
                             </NavItem>
                         </Nav>
@@ -40,12 +39,12 @@ class FarmHubNavbar extends React.Component{
                         <Nav navbar>
                             <NavItem>
                                 <Link to='/login'>
-                                    <NavLink>Login</NavLink>
+                                    Login
                                 </Link>
                             </NavItem>
                             <NavItem>
                                 <Link to='/register'>
-                                    <NavLink>Register</NavLink>
+                                    Register
                                 </Link>
                             </NavItem>
                         </Nav>
