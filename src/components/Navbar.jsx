@@ -16,6 +16,7 @@ import {
 import Swal from 'sweetalert2';
 import {Link}from 'react-router-dom'
 
+
 class FarmHubNavbar extends React.Component{
     state = {
         isOpen : false
@@ -47,7 +48,14 @@ class FarmHubNavbar extends React.Component{
 
     }
 
-    render(){           
+    onClickCartBtn = () => {
+        var id = localStorage.getItem('id')
+        window.location='/cart/' + id
+
+    }
+
+    render(){      
+                
         return (
             <div className='sticky-top'>
                 <Navbar color="light" light expand="md">
@@ -84,7 +92,7 @@ class FarmHubNavbar extends React.Component{
                             {
                                 this.props.user.role === 'pembeli' ?
                                 <NavItem>
-                                    <NavLink  href='/cart'>
+                                    <NavLink onClick={this.onClickCartBtn} style={{cursor:'pointer'}}>
                                         Cart
                                     </NavLink>
                                 </NavItem>

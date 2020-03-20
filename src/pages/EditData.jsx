@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { urlApi } from '../supports/constants/urlApi'
 import Axios from 'axios'
 import Loading from './../components/Loading'
+import Swal from 'sweetalert2'
 
 
 class EditData extends Component{
@@ -34,7 +35,7 @@ class EditData extends Component{
 
         for(var i = 0; i < refs.length; i++){
             if(this.refs[refs[i]].value){
-                data[refs[i]]=this.refs[refs[i]].value
+                data[refs[i]]=this.refs[refs[i]].type === 'number' ? Number(this.refs[refs[i]].value) : this.refs[refs[i]].value
             
             }else{
                 return(
@@ -63,10 +64,12 @@ class EditData extends Component{
             var id = window.location.pathname.split('/')[2]
             Axios.patch(urlApi+'products/'+id, data)
             .then((res)=>{
-                console.log(res)
-                alert('berhasil')
-                window.location = '/manage-product'
+                console.log(res)    
+                Swal.fire('Edit Berhasil')
+                window.location = '/manage-product'   
+
             })
+            
             .catch((err)=>{
                 console.log(err)
             })
@@ -92,8 +95,8 @@ class EditData extends Component{
                 <div className="d-flex flex-column a1 text-center p-5 register-form">
                     <div className='register-farmhub'>EDIT DATA</div>
                     <input ref='name' type='text' defaultValue={this.state.dataProduct.name} className='input-register mt-5' ></input>
-                    <input ref='price' type='text' defaultValue={this.state.dataProduct.price} className='input-register mt-3' ></input>
-                    <input ref='stock' type='text' defaultValue={this.state.dataProduct.stock} className='input-register mt-3' ></input>
+                    <input ref='price' type='number' defaultValue={this.state.dataProduct.price} className='input-register mt-3' ></input>
+                    <input ref='stock' type='number' defaultValue={this.state.dataProduct.stock} className='input-register mt-3' ></input>
                     <input ref='deskripsi' type='text' defaultValue={this.state.dataProduct.deskripsi} className='input-register mt-3' ></input>
                     <input ref='img_url'type='text' defaultValue={this.state.dataProduct.img_url} className='input-register mt-3' ></input>
                     <div className="btn btn-primary mt-4" onClick={this.onSaveBtnClick}>Save</div>

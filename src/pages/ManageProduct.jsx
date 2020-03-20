@@ -4,6 +4,7 @@ import Axios from 'axios'
 import { urlApi } from '../supports/constants/urlApi'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { Table } from 'reactstrap'
 
 class ManageProduct extends Component{
     state={
@@ -38,7 +39,7 @@ onDeleteBtnClick=(id,name)=>{
     .then((val)=>{
         if(val.value){
             Axios.delete(urlApi+'products/'+id)
-            .then((res)=>{
+            .then((res)=>{ 
                 console.log(res)
                 Swal.fire('Delete Data Success')
                 this.getDataProduct()
@@ -90,29 +91,26 @@ return Output
 
         return(
             <div className="container">
-                <h4>Manage Your Product Here</h4>
-                <div className="table-responsive">
+                <h4 className='mt-4 mb-3'>Manage Your Product Here</h4>
+                    <Table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Description</th>
+                                    <th>image Url</th>
+                                    <th>Delete</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
 
-                    <div className="table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Description</th>
-                                <th>image Url</th>
-                                <th>Delete</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {this.printDataProduct()}
-                        </tbody>
-                    </div>
-
-                </div>
+                            <tbody>
+                                {this.printDataProduct()}
+                            </tbody>
+                        
+                    </Table>
             </div>
         )
     }

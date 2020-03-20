@@ -17,13 +17,13 @@ class ProductDetail extends React.Component {
         num : 1,
         data : null,
         dataPenjual : null,
-        id_user : null
     }
 
     componentDidMount(){
         var id = window.location.pathname.split('/')[2]
         console.log(window.location)
         this.getDataProductDetail(id)
+
     }
 
 
@@ -49,8 +49,25 @@ class ProductDetail extends React.Component {
 
     onBtnAddCartProduct = () => {
         var id = localStorage.getItem('id')
-        this.setState({id_user:id})
-        alert(this.id_user)
+        
+        var data = {
+            id_user : id,
+            id_seller : this.state.data.id_penjual,
+            id_product : this.state.data.id,
+            product_name : this.state.data.name,
+            image : this.state.data.img_url,
+            qty : this.state.num,
+            price : this.state.data.price
+        }
+
+        Axios.post(urlApi+'carts', data)
+        .then((res)=>{
+            console.log(res)
+            alert('berhasil')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
         
     }
 

@@ -93,7 +93,7 @@ class ProductList extends React.Component{
             if(this.props.dataUser.fullname === '' || this.props.dataUser.address === '' || this.props.dataUser.phone_number === ''){
                 return(
                     <div className="container-fluid">
-                        <div class="alert alert-danger mt-3 text-center" role="alert">
+                        <div className="alert alert-danger mt-3 text-center" role="alert">
                             Complete your profile <Link to='/complete-your-profile'>here</Link> 
                         </div>
                     </div>

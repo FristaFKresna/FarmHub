@@ -14,8 +14,8 @@ export default class PostYourProduct extends React.Component{
 
         var data = {
             name : name,
-            price : price,
-            stock : stock,
+            price : Number(price),
+            stock : Number(stock),
             img_url : image,
             deskripsi : descrip,
             id_penjual : Number(localStorage.getItem('id'))
@@ -65,18 +65,18 @@ export default class PostYourProduct extends React.Component{
     render(){
         return(
             <div className = 'row justify-content-center align-item-center'>
-                <div className="col-md-5 card p-5 mt-5 form-group">
+                <div className="col-md-5 card p-5 my-5 form-group" style={{borderRadius:'30px', backgroundColor:'#f5f5f5', boxShadow:'0px 4px 15px -1px rgba(0,0,0,0.75)'}}>
                     <h2>Post Your Product</h2>
                     <div className='mt-3'>Nama Produk :</div>
-                    <input ref='namaProduk' type='text' placeholder='name your product' />
+                    <input className='input-register mt-2' ref='namaProduk' type='text' placeholder='name your product' />
                     <div className='mt-3'>Harga : </div>
-                    <input ref='harga' type='number' placeholder='price' />
+                    <input className='input-register mt-2' ref='harga' type='number' placeholder='price' />
                     <div className='mt-3'>Stock :</div>
-                    <input ref='stok' type='number' placeholder='stock' />
+                    <input className='input-register mt-2' ref='stok' type='number' placeholder='stock' />
                     <div className='mt-3'>Image : </div>
-                    <input ref='img' type='text' placeholder='input image_url' />
+                    <input className='input-register mt-2' ref='img' type='text' placeholder='input image_url' />
                     <div className='mt-3'>Deskripsi : </div>
-                    <input ref='deskripsi' style={{height:'50px'}} type='text' placeholder='description' />
+                    <textarea className='input-register mt-2' ref='deskripsi' style={{height:'80px'}} type='text' placeholder='description' />
                     
                     <span className='mt-5'>
                         <button onClick={this.onAddProductBtnClick} className="btn btn-outline-primary">Submit</button>

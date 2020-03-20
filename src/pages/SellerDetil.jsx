@@ -45,7 +45,7 @@ class SellerDetil extends Component{
             return(
                 <div key={val.id} className="my-card col-sm-2 mr-3 mt-3">
                     <Link to={'/product-detail/'+ val.id}>
-                    <img src={val.img_url} width='100%' alt=""/>
+                    <img style={{height:'70%',objectFit:'cover', objectPosition:'top'}} src={val.img_url} width='100%' alt=""/>
                     </Link>
                     <div className='farmhub-product-title'>{val.name}</div>
                     <div className='farmhub-product-price'>Rp. {val.price}</div>
