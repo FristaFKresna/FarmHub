@@ -32,7 +32,7 @@ class Loading extends React.Component{
                     :
 
                     <Loader
-                        type='MutatingDots'
+                        type='Oval'
                         color='#3085d6'
                         heigth={100}
                         width={100}

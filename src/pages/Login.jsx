@@ -5,6 +5,7 @@ import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import './../supports/css/Login.css'
 import { urlApi } from '../supports/constants/urlApi.js'
+import {Link} from 'react-router-dom'
 
 
 class Login extends React.Component{
@@ -78,7 +79,7 @@ class Login extends React.Component{
                             <br/>
                             <div className="btn btn-primary" onClick={this.onLoginBtnClick}>Login</div>
                             <div className="btn-login"></div>
-                            <a href='*'><div className="btn btn-danger new-account-google">Login With Google</div></a>
+                            <Link to='*'><div className="btn btn-danger new-account-google" onClick={()=>{this.props.fnOnTesProps('hola')}}>Login With Google</div></Link>
                             <a href='/register'><div className="btn btn-primary new-account-google">Create New Account</div></a>
                             <div><a href='*'>Forget Password?</a></div>
                             

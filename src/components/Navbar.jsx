@@ -14,7 +14,7 @@ import {
   
 } from 'reactstrap';
 import Swal from 'sweetalert2';
-import {Link}from 'react-router-dom'
+// import {Link}from 'react-router-dom'
 
 
 class FarmHubNavbar extends React.Component{
@@ -41,8 +41,16 @@ class FarmHubNavbar extends React.Component{
             if(val.value){
                 localStorage.removeItem('id')       //delete data di local storage
                 this.props.fnDeleteDataUser()      //delete data di app.js
-                Swal.fire("You're Successfully Logout")
-                window.location = '/'
+                Swal.fire({
+                    icon:'success',
+                    title:'Logout Success',
+                    timer:2000,
+                    showConfirmButton:false,
+                })
+                .then((res)=>{
+                    window.location = '/'
+                })
+                
             }
         })
 
@@ -64,11 +72,11 @@ class FarmHubNavbar extends React.Component{
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                {/* <NavLink href='/'> */}
-                                    <Link to='/'>
+                                <NavLink href='/'>
+                                    {/* <Link to='/'> */}
                                         Products
-                                    </Link>
-                                {/* </NavLink> */}
+                                    {/* </Link> */}
+                                </NavLink>
                             </NavItem>
                         </Nav>
 
@@ -91,11 +99,19 @@ class FarmHubNavbar extends React.Component{
                         <Nav navbar>
                             {
                                 this.props.user.role === 'pembeli' ?
+
+                                <Nav navbar>
+                                <NavItem>
+                                    <NavLink href='/cart-revisi' style={{cursor:'pointer'}}>
+                                        Cart Revisi
+                                    </NavLink>
+                                </NavItem>
                                 <NavItem>
                                     <NavLink onClick={this.onClickCartBtn} style={{cursor:'pointer'}}>
                                         Cart
                                     </NavLink>
                                 </NavItem>
+                                </Nav>
                                 :
                                 this.props.user.role === 'penjual' ?
                                 
@@ -123,11 +139,14 @@ class FarmHubNavbar extends React.Component{
                                     Hello, {this.props.user.email}
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem>
+                                    <DropdownItem href='/change-profile'>
                                     Change Profile
                                     </DropdownItem>
-                                    <DropdownItem>
+                                    <DropdownItem href='/history'>
                                     History
+                                    </DropdownItem>
+                                    <DropdownItem href='/wishlist'>
+                                    Wishlist
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem onClick={this.onLogoutClick}>

@@ -18,6 +18,16 @@ import SellerDetil from './pages/SellerDetil';
 import ManageProduct from './pages/ManageProduct';
 import EditData from './pages/EditData'
 import Cart from './pages/Cart'
+import ChangeProfile from './pages/ChangeProfile';
+import History from './pages/History'
+import HistoryDetail from './pages/HistoryDetail'
+import SearchImdb from './latihan/FiturSearhimdb'
+import FiturWilayah from './latihan/FiturWilayah';
+import CounterWithRedux from './pages/CounterWithRedux';
+import ListToDo from './latihan/ListToDo';
+import CartRevisi from './pages/Cart_01';
+import WishList from './pages/WishList';
+
 
 
 
@@ -26,9 +36,12 @@ class App extends Component {
   state={
     dataUser : null,
     tampung : null,
-    
+    tesProps : null
+      
   }
-
+  onTesProps = (param)=>{
+    this.setState({tesProps:param})
+  }
   
   //latihan props antar child dari register ke product detil
   onTampungData = (param) => {
@@ -37,16 +50,17 @@ class App extends Component {
 
   //setelah render pertama
   componentDidMount (){
+    document.title = 'Farmhub - Pasar Hasil Tani Indonesia'
     // setiap kali refresh, bakalan ke trigger
-
+    
     //mengambil id di local storage
     var id = localStorage.getItem('id')
-
     if(id!==null){
       //ambil data kembali
       Axios (urlApi + 'users/'+ id)
       .then((res)=>{
         this.setState({dataUser:res.data})
+        console.log(res)
       })
       .catch((err)=>{
         console.log(err)
@@ -60,9 +74,12 @@ class App extends Component {
   
   onChangeDataUser = (data) => {
     this.setState({dataUser:data})
+    
   }
 
+  
   render(){
+    
     return (
       <div>
         <FarmHubNavbar fnDeleteDataUser={this.onDeleteDataUser} user={this.state.dataUser}/>
@@ -80,11 +97,11 @@ class App extends Component {
               </Route>
 
               <Route path='/seller-detail'>
-              <SellerDetil/>
+              <SellerDetil dariLogin={this.state.tesProps}/>
               </Route>
       
               <Route exact path='/login'>
-              <Login bebas={this.onChangeDataUser}/>
+              <Login bebas={this.onChangeDataUser} fnOnTesProps={this.onTesProps}/>
               </Route>
               
               <Route exact path='/register'>
@@ -115,12 +132,48 @@ class App extends Component {
               <Cart/>
               </Route>
 
+              <Route path='/cart-revisi'>
+              <CartRevisi/>
+              </Route>
+
+              <Route path='/history'>
+              <History/>
+              </Route>
+
+              <Route path='/history-detail'>
+              <HistoryDetail/>
+              </Route>
+
+              <Route path='/wishlist'>
+              <WishList/>
+              </Route>
+
+              <Route path='/change-profile'>
+              <ChangeProfile/>
+              </Route>
+
               <Route exact path='/latihan-fake-api'>
               <LatihanFakeApi/>
               </Route>
       
               <Route exact path='/latihan-fake-api-2'>
               <LatihanFakeApi2/>
+              </Route>
+
+              <Route path='/fitur-search'>
+              <SearchImdb/>
+              </Route>
+
+              <Route path='/fitur-wilayah'>
+              <FiturWilayah/>
+              </Route>
+
+              <Route path='/counter-redux'>
+              <CounterWithRedux/>
+              </Route>
+
+              <Route path='/list'>
+              <ListToDo/>
               </Route>
 
               <Route exact path='/*'>

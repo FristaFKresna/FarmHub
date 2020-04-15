@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { urlApi } from '../supports/constants/urlApi';
 import Axios from 'axios'
+import Swal from 'sweetalert2'
 
 
 
@@ -10,8 +11,12 @@ class SelectRole extends Component {
         let id = localStorage.getItem('id')
         Axios.patch(urlApi + 'users/' + id, {role:role})
         .then((res)=>{
-            alert('Anda sekarang menjadi ' + role)
-            window.location = './complete-your-profile'
+            Swal.fire({
+                title : 'Anda Sekarang Menjadi ' + role,
+            })
+            .then((res)=>{
+                window.location = './complete-your-profile'
+            })
 
         })
         .catch((err)=>{

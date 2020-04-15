@@ -3,6 +3,8 @@ import {Table} from 'reactstrap'
 import Loading from './../components/Loading'
 import { urlApi } from '../supports/constants/urlApi'
 import Axios from 'axios'
+import Swal from 'sweetalert2'
+import PageCartKosong from './CartKosong'
 
 class Cart extends React.Component{
     state = {
@@ -15,6 +17,8 @@ class Cart extends React.Component{
         console.log(window.location)
         this.getDataCart(id)
         this.getDataProduct()
+       
+        
     }
 
    
@@ -79,6 +83,7 @@ class Cart extends React.Component{
         .then((res)=>{
             console.log(res)
             this.setState({dataProduct:res.data})
+            
         })
         .catch((err)=>{
             console.log(err)
@@ -136,7 +141,12 @@ class Cart extends React.Component{
         Axios.delete(urlApi+'carts/'+ param.id)
         .then((res)=>{
             console.log(res)
-            alert('delete berhasil')
+            Swal.fire({
+                icon:'success',
+                title:'Delete Berhasil',
+                showConfirmButton:false,
+                timer:'1500'
+            })
             this.getDataCart(param.id_user)
             // Axios.get(urlApi+'carts?id_user='+param.id_user)
             // .then((res)=>{
@@ -149,6 +159,80 @@ class Cart extends React.Component{
         })
     }
 
+    onBtnCheckoutClick=()=>{
+        var id = window.location.pathname.split('/')[2]
+
+        var jumlah_item=0
+        this.state.dataCart.map((val)=>{
+            return(
+                jumlah_item+=val.qty
+            )
+        })
+
+        var data = {
+            date : `${new Date().getDate()}-${new Date().getMonth() + 1}-${new Date().getFullYear()} / ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()} `,
+            jumlah_item : jumlah_item,
+            total : this.grandTotal(),
+            id_pembeli : id,
+        }
+
+       
+
+                
+        Swal.fire({
+            title : "Checkout",
+            text : "Are You Sure",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        })
+        .then((val)=>{
+            if(val.value){
+                Axios.post(urlApi+'transaction',data)
+                .then((res)=>{
+                    console.log(res)
+                    //masi di tempat tapi langsung kososng cartnya
+                    var transaction_detail=[]
+                    this.state.dataCart.map((val)=>{
+                        return transaction_detail.push(
+                            {
+                                name: val.product_name,
+                                id_product: val.id_product,
+                                id_pembeli: val.id_user,
+                                price: val.price,
+                                qty: val.qty,
+                                id_transaction:res.data.id,
+                            }
+                        )
+                    })
+                    Axios.post(urlApi+'transaction_detail',transaction_detail)
+                    .then((res)=>{
+                        console.log(res)
+
+                        this.state.dataCart.map((val)=>{
+                            return(
+                            Axios.delete(urlApi+'carts/'+val.id_product)
+                            .then((res)=>{
+                                console.log(res)
+                                this.getDataCart(val.id_user)
+                                alert('success')
+                            })
+                            )
+                            
+                        })
+
+                    })
+
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+                
+            }
+        })
+    }
     
 
 
@@ -161,7 +245,7 @@ class Cart extends React.Component{
         if(this.state.dataCart.length === 0){
             return(
             <div className="container text-center">
-                <h1>Data Masih Kosong</h1>
+                <PageCartKosong/>
             </div>
             )
         }
@@ -198,7 +282,7 @@ class Cart extends React.Component{
                                     <div className='harga'>Rp. {this.grandTotal()}   </div>
                                     </div>
                                     <div className='col-md-5 align-self-center'>
-                                    <div className="btn btn-primary w-100">Buy</div>  
+                                    <div className="btn btn-primary w-100" onClick={this.onBtnCheckoutClick}>checkout</div>  
                                     </div>
                                 </div>     
                             </div>

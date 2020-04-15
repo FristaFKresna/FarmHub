@@ -10,14 +10,17 @@ class ProductList extends React.Component{
     state = {
         data : null,
         dataPenjual : null,
-        search : ''
+        search : '',
+        
+        
     }
 
-    
+
     componentDidMount(){
         // setTimeout(this.getDataProducts,3000)
         this.getDataProducts()
         this.getDataPenjual()
+        
     }
     
     getDataPenjual = () => {
@@ -50,10 +53,12 @@ class ProductList extends React.Component{
         return penjual[0].address
     }
 
-    printDataProducts = () => {
+    printDataProducts = () => {   
+      
         var dataFiltered = this.state.data.filter((prod)=>{
             return prod.name.toLowerCase().startsWith(this.state.search)
         })
+
 
         if(dataFiltered.length === 0){
             return <h1>Data Not Found</h1>
@@ -74,6 +79,7 @@ class ProductList extends React.Component{
         })
 
         return output
+    
     }
     
     fnRenderAlert=()=>{
@@ -145,7 +151,7 @@ class ProductList extends React.Component{
                             <div className="farmhub-product-location">
                                 <FormGroup check>
                                     <Label check>
-                                    <Input type="checkbox" />{' '}
+                                    <Input type="checkbox"/>{' '}
                                         Buah-Buahan
                                     </Label>
                                 </FormGroup>
@@ -177,7 +183,7 @@ class ProductList extends React.Component{
                             <div className='farmhub-product-location'>
                                 <FormGroup check>
                                     <Label check>
-                                    <Input type="checkbox" />{' '}
+                                    <Input type="checkbox"/>{' '}
                                     Jabodetabek
                                     </Label>
                                 </FormGroup>

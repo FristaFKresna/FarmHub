@@ -25,14 +25,26 @@ export default class PostYourProduct extends React.Component{
             Axios.post(urlApi+'products', data)
             .then((res)=>{
                 console.log(res)
-                Swal.fire('Update Berhasil')
-                window.location = './'
+                Swal.fire({
+                    icon:'success',
+                    title:'Update Berhasil',
+                    timer:2000,
+                })
+                .then((res)=>{
+                    window.location = './'
+                })
+
             })
             .catch((err)=>{
                 console.log(err)
             })
         }else{
-            alert('Data Harus Diisi Semua')
+            Swal.fire({
+                icon:'info',
+                title:'Data Harus Diisi Semua',
+                showConfirmButton: false,
+            })
+            
         }
 
 //==============================================================COBA CARA LOOPING===================================================================

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import './../supports/css/Register.css'
 import { urlApi } from '../supports/constants/urlApi.js'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Register extends React.Component{
 
@@ -94,6 +95,7 @@ class Register extends React.Component{
 
 
     render(){
+        console.log(this.props.bebas)
         return(
             <div className="container-fluid my-5">
                 <div className="d-flex justify-content-center">
@@ -119,7 +121,7 @@ class Register extends React.Component{
                         <div className="btn-login"></div>
                         <Link to = '*'><div className="btn btn-danger google-register" onClick={ () => this.props.fnKirimData('bebas')}>Register With Google Mail</div></Link>
                         
-                        <div>Already have an account? <Link to ='/login'>Sign in</Link></div>
+                        <div>Already have an account?<Link to ='/login'>Sign in</Link></div>
 
                     </div>
                 </div>
@@ -129,4 +131,12 @@ class Register extends React.Component{
     }
 }
 
-export default Register
+const mapStateToProps = (state) => {
+    return{
+        bebas: state.counter,
+        user: state.name
+    }
+    
+}
+
+export default connect(mapStateToProps)(Register)

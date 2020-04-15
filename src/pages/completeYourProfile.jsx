@@ -22,8 +22,15 @@ class CompleteYourProfile extends Component{
 
             Axios.patch(urlApi + 'users/' + id, data)
             .then((res)=>{
-                Swal.fire('Update Data Berhasil')
-                window.location='./'
+                Swal.fire({
+                    icon:'success',
+                    title:'Update Profile Success',
+                    showConfirmButton: false,
+                    timer:2000,
+                })
+                .then((res)=>{
+                    window.location='./'
+                })
                 console.log(res)
                 
             })
@@ -31,7 +38,11 @@ class CompleteYourProfile extends Component{
                 console.log(err)
             })
         }else{
-            alert('Data Harus Diisi Semua')
+            Swal.fire({
+                icon:'info',
+                title: 'Data Harus Diisi Semua'
+            })
+
         }
 
 //=======================================================CARA KE DUA PAKE LOOPING================================================================

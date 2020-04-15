@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Axios from 'axios'
 import Loading from './../components/Loading'
 import {urlApi} from './../supports/constants/urlApi'
+import { Card, CardHeader, CardBody, CardFooter } from 'reactstrap'
 
 
 class SellerDetil extends Component{
@@ -70,6 +71,8 @@ class SellerDetil extends Component{
             )
         }
 
+        var{fullname, address, phone_number, email} = this.state.dataPenjual
+
         return(
             <div className='container-fluid'>
                 <div className="row">
@@ -77,11 +80,22 @@ class SellerDetil extends Component{
                         <div className="my-card mt-3 p-3">
                             <img src='https://i.ya-webdesign.com/images/avatar-png-1.png' width='100%' alt=""/>
                             <div className="mt-4">
-                                SELLER INFO
-                                <div>NAMA : {this.state.dataPenjual.fullname}</div>
-                                <div>ADRRESS : {this.state.dataPenjual.address}</div>
-                                <div>PHONE NUMBER : {this.state.dataPenjual.phone_number}</div>
-                                <div>EMAIL : {this.state.dataPenjual.email}</div>
+                                <Card>
+                                    <CardHeader>
+                                        <h4 className='text-center'>
+                                            SELLER INFO {this.props.dariLogin}
+                                        </h4>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <div>Nama : {fullname}</div>
+                                        <div>Alamat: {address}</div>
+                                        <div>Contact : {phone_number}</div>
+                                        <div>Email : {email}</div>   
+                                    </CardBody>
+                                    <CardFooter>
+                                        <div>Total Barang : {this.state.data.length} produk</div>
+                                    </CardFooter>
+                                </Card>
                             </div>
                         </div>
                     </div>

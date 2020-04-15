@@ -39,7 +39,10 @@ class EditData extends Component{
             
             }else{
                 return(
-                    alert('tidak boleh ada yang kosong')
+                    Swal.fire({
+                        icon:'info',
+                        title:'Tidak Boleh Ada Yang Kosong',
+                    })
                 )
             }
     
